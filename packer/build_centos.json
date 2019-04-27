@@ -1,0 +1,46 @@
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "laranerds-157820",
+            "account_file": "laranerds-157820-f31e50997708.json",
+            "source_image_family": "centos-7",
+            "zone": "europe-west2-c",
+            "image_description" : "packager learning cent os",
+            "image_labels": {
+                "packer": "learning"
+            },
+            "image_name": "packerlearning1",
+            "ssh_username": "packer"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": ["touch ~/sample",
+                        "echo \"sample\" > ~/sample"
+                      ],
+            "environment_vars": ["NAME=PACKER"]          
+        },
+        {
+            "type": "shell",
+            "execute_command": "sudo -S {{.Path}}",
+            "inline": [
+                "yum -y install python-pip",
+                "pip install --upgrade pip",
+                "pip install ansible"
+            ]
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "ansible/main.yml",
+            "playbook_dir": "ansible"
+        }
+    ],
+    "post-processors": [
+        {
+            "inline": ["echo \"Completed\""],
+            "type": "shell-local"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+packer/laranerds-157820-f31e50997708.json
+terrafom/laranerds-157820-f31e50997708.json
+terrafom/.terrafom/
+terrafom/*.tfstate
+terrafom/*.tfstate.backup
+terrafom/terrafomlearn

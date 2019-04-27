@@ -1,0 +1,14 @@
+- name: Install webserver
+  yum:
+    name: httpd
+    state: present
+
+- name: Restart the Service Allways
+  service:
+    name: httpd
+    state: restarted
+
+- name: Enable the WebServer
+  service: 
+    name: httpd
+    enabled: yes

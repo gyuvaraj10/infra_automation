@@ -1,0 +1,16 @@
+- name: Update Yum Repository
+  yum_repository:
+    name: jenkins.repo
+    description: 'Jenkins Repostiory'
+    baseurl: https://pkg.jenkins.io/redhat-stable/
+    gpgkey: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+- name: Install Jenkins
+  yum:
+    name: jenkins
+    state: present
+
+- name: Enable the Jenkins Server
+  service: 
+    name: jenkins
+    enabled: yes    
